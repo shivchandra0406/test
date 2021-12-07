@@ -25,20 +25,27 @@ SECRET_KEY = 'django-insecure-r&(rlbr&dwf%$hu28fml8&_9fl8*^9wg&m-e94t3m8$pclyyr@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
-GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
-GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH')
-if os.name == 'nt':
-    import platform
-    OSGEO4W = r"C:\OSGeo4W"
-    if '64' in platform.architecture()[0]:
-        OSGEO4W += "64"
-    assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
-    os.environ['OSGEO4W_ROOT'] = OSGEO4W
-    os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
-    os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
-    os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
+# ALLOWED_HOSTS = ['*']
+# GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
+# GEOS_LIBRARY_PATH = os.getenv('GEOS_LIBRARY_PATH')
+# if os.name == 'nt':
+#     import platform
+#     OSGEO4W = r"C:\OSGeo4W"
+#     if '64' in platform.architecture()[0]:
+#         OSGEO4W += "64"
+#     assert os.path.isdir(OSGEO4W), "Directory does not exist: " + OSGEO4W
+#     os.environ['OSGEO4W_ROOT'] = OSGEO4W
+#     os.environ['GDAL_DATA'] = OSGEO4W + r"\share\gdal"
+#     os.environ['PROJ_LIB'] = OSGEO4W + r"\share\proj"
+#     os.environ['PATH'] = OSGEO4W + r"\bin;" + os.environ['PATH']
 # Application definition
+
+os.environ['GDAL_DATA'] = r"C:\Python37\Lib\site-packages\osgeo\data\gdal"
+os.environ['PROJ_LIB'] = r"C:\Python37\Lib\site-packages\osgeo\data\proj"
+os.environ['PATH'] = r"C:\Python37\Lib\site-packages\osgeo" +";" + os.environ['PATH']
+GDAL_LIBRARY_PATH = r'C:\Python37\Lib\site-packages\osgeo\gdal204.dll' 
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
